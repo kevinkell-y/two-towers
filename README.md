@@ -85,8 +85,8 @@ These concepts are foundational to many areas of software engineering including:
 
 ```
 .
-├── app.py                 # Flask Control Tower
-├── tower.py               # UDP Radio Tower
+├── control_tower.py                 # Flask Control Tower
+├── radio_tower.py               # UDP Radio Tower
 ├── config.yaml            # Human-editable configuration
 ├── requirements.txt
 ├── exports/               # Exported JSON packets

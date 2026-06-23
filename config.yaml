@@ -1,0 +1,116 @@
+# ============================================================
+# Project : Open Telemetry Laboratory
+# Lab     : 01 - Communication Between Two Towers
+# File    : config.yaml
+# Author  : Kevin Kelly
+# Created : 2026-06-22
+# Version : 0.1.0
+#
+# Description
+# -----------
+# Human-editable configuration file for the control tower.
+#
+# This file defines:
+#
+#   • Network communication settings
+#   • Observation parameters
+#   • Validation rules
+#   • Default values shown in the Flask interface
+#
+# Workflow
+# --------
+# YAML
+# → Python Dictionary
+# → HTML Form
+# → User Input
+# → Validation
+# → JSON Packet
+# → UDP Transmission
+#
+# Notes
+# -----
+# YAML is intentionally the "source of truth" because it is easy for humans
+# to read and edit. The application converts this file into a Python
+# dictionary before any processing occurs.
+# ============================================================
+
+config:
+
+  # ==========================================================
+  # UDP Tower Network Settings
+  #
+  # These values tell the control tower where the receiving
+  # radio tower is located.
+  # ==========================================================
+
+  tower_host: "127.0.0.1"
+  tower_port: 9009
+
+  # Maximum number of seconds to wait for a reply before
+  # declaring the transmission unsuccessful.
+  timeout_seconds: 2
+
+
+  # ==========================================================
+  # Packet Outputs
+  #
+  # Each entry below automatically becomes:
+  #
+  #   1. A Python dictionary entry
+  #   2. A field on the HTML form
+  #   3. A validation rule
+  #   4. Part of the exported JSON packet
+  #
+  # This demonstrates how one YAML configuration file can drive
+  # the behavior of the entire application.
+  # ==========================================================
+
+  outputs:
+
+    # --------------------------------------------------------
+    # Observation Frequency
+    # --------------------------------------------------------
+    frequency_mhz:
+
+      # Human-readable label displayed on the web page.
+      label: "Frequency MHz"
+
+      # Default value loaded when the page opens.
+      default: 1420.405
+
+      # Allowed range for validation.
+      min: 1000
+      max: 2000
+
+
+    # --------------------------------------------------------
+    # Receiver Bandwidth
+    # --------------------------------------------------------
+    bandwidth_mhz:
+
+      label: "Bandwidth MHz"
+      default: 2.4
+      min: 0.1
+      max: 20
+
+
+    # --------------------------------------------------------
+    # Receiver Gain
+    # --------------------------------------------------------
+    gain:
+
+      label: "Receiver Gain"
+      default: 36
+      min: 0
+      max: 60
+
+
+    # --------------------------------------------------------
+    # Signal Integration Time
+    # --------------------------------------------------------
+    integration_seconds:
+
+      label: "Integration Seconds"
+      default: 10
+      min: 1
+      max: 300
